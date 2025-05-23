@@ -1,0 +1,21 @@
+{% extends 'wrapper.html' %}
+{% load static %}
+{% block title %}
+<title>Авторизация</title>
+{% endblock title %}
+
+{% block content %}
+    <div class="container" style="margin-top: 5%; text-align:center; width: 70%;">
+        <div class="form-section">
+            <h2>Авторизация</h2>
+            <form method="POST" style="width.input: 100%">
+                {% csrf_token %}
+                {{ form }}
+                <button type="submit" class="btn btn-ouline-warning" style="margin-top: 2%;">Войти</button>
+            </form>
+            <hr>
+            <p>Нету профиля? <a href="{% url 'signup' %}">Зарегистрироваться</a></p>
+            <br>
+        </div>
+    </div>
+{% endblock content %}

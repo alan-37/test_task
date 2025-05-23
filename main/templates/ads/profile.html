@@ -1,0 +1,69 @@
+{% extends 'wrapper.html' %}
+{% load static %}
+{% block title %}
+<title> Профиль </title>
+{% endblock title %}
+{% block content %}
+<div class="container" style="margin-top: 5%; text-align:center; width: 70%;">
+    <h4>Мои объявления</h4>
+  {% if user_ads %}
+    <div class="row">
+      {% for ad in user_ads %}
+        <div class="col-md-4 mb-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{ ad.title }}</h5>
+              <p class="card-text">{{ ad.description|truncatechars:100 }}</p>
+              <a href="{% url 'ads_detail' ad.id %}" class="btn btn-sm btn-info">Подробнее</a>
+              <a href="{% url 'edit_ad' ad.id %}" class="btn btn-sm btn-warning">Редактировать</a>
+              <a href="{% url 'delete_ad' ad.id %}" class="btn btn-sm btn-danger">Удалить</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>Вы ещё не создали ни одного объявления.</p>
+  {% endif %}
+
+  <hr>
+  <h4>Входящие предложения обмена</h4>
+  {% if incoming_proposals %}
+    <ul class="list-group mb-4">
+      {% for proposal in incoming_proposals %}
+        <li class="list-group-item">
+          <strong>{{ proposal.ad_sender.user.username }}</strong> хочет обменяться:
+          "{{ proposal.ad_sender.title }}" на "{{ proposal.ad_receiver.title }}"
+          <br>
+          <em>Комментарий:</em> {{ proposal.comment }}
+          <br>
+          <strong>Статус:</strong> {{ proposal.get_status_display }}
+          <br>
+          {% if proposal.status == 'pending' %}
+            <a href="{% url 'accept_proposal' proposal.id %}" class="btn btn-success btn-sm">Принять</a>
+            <a href="{% url 'reject_proposal' proposal.id %}" class="btn btn-danger btn-sm">Отклонить</a>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Нет входящих предложений.</p>
+  {% endif %}
+  <h4>Исходящие предложения обмена</h4>
+  {% if outgoing_proposals %}
+    <ul class="list-group">
+      {% for proposal in outgoing_proposals %}
+        <li class="list-group-item">
+          Вы предложили обменять "{{ proposal.ad_sender.title }}" на "{{ proposal.ad_receiver.title }}"
+          <br>
+          <em>Комментарий:</em> {{ proposal.comment }}
+          <br>
+          <strong>Статус:</strong> {{ proposal.get_status_display }}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Вы ещё не отправили ни одного предложения.</p>
+  {% endif %}
+</div>
+{% endblock content %}

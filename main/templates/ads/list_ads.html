@@ -1,0 +1,70 @@
+{% extends 'wrapper.html' %}
+{% load static %}
+{% block title %}
+<title> Объявления </title>
+{% endblock title %}
+{% block content %}
+
+<section class="main-section paddind" id="Portfolio">
+  <form method="get">
+    <div class="form-group mb-3">
+      <label for="q">Ключевые слова</label>
+      <input type="text" name="q" id="q" class="form-control" placeholder="Поиск..." value="{{ query }}">
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="category">Категория</label>
+        <select name="category" id="category" class="form-control">
+          <option value="">Все категории</option>
+
+              {% for cat in categories %}
+                <option value="{{ cat }}">
+                  {{ cat }}
+                </option>
+              {% endfor %}
+        </select>
+      </div>
+
+      <div class="col-md-6">
+        <label for="condition">Состояние</label>
+        <select name="condition" id="condition" class="form-control">
+          <option value="">Любое</option>
+          <option value="new" >Новое</option>
+          <option value="used" >Б/у</option>
+        </select>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Искать</button>
+  </form>
+    <div class="portfolioContainer wow fadeInUp  delay-02s">
+        {% for post in ads %}
+            <div class=" Portfolio-box">
+                <a href="{% url 'ads_detail' post.id %}">
+                    <img src="{{ post.images.url }}" class="img-thumbnail">
+                </a>
+                <a href="{% url 'ads_detail' post.id %}">
+                    <h3>{{ post.title }}</h3>
+                </a >
+                {% if user.is_authenticated %}
+                <a href ="{% url 'send_proposal' post.id%}">
+                    <button type="submit" onclick="window.location.href = {% url 'send_proposal' post.id%}" class="btn btn-secondary" style="padding: 4px; width: 95%;background: #7dc577;">
+                        Предложить обмен<i class="bi bi-check2-square"></i>
+                    </button>
+                </a>
+                {% else %}
+                <a href ="{% url 'ads_detail' post.id%}">
+                    <button type="submit" onclick="window.location.href = {% url 'send_proposal' post.id%}" class="btn btn-secondary" style="padding: 4px; width: 95%;background: #7dc577;">
+                        Предложить обмен<i class="bi bi-check2-square"></i>
+                    </button>
+                </a>
+                {% endif %}
+
+
+            </div>
+
+        {% endfor %}
+    </div>
+</section>
+{% endblock content %}

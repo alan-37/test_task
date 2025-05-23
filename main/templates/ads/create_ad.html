@@ -1,0 +1,14 @@
+{% extends 'wrapper.html' %}
+{% load static %}
+{% block title %}
+<title> Создание объявления </title>
+{% endblock title %}
+{% block content %}
+<div class="container" style="margin-top: 5%; text-align:center; width: 70%;">
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Создать">
+    </form>
+</div>
+{% endblock content %}

@@ -1,0 +1,24 @@
+
+__pycache__/
+
+
+
+media/product_image/
+
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+
+
+__pypackages__/
+
+.env
+.venv
+venv/
+../venv/
+
+.idea/

@@ -1,0 +1,127 @@
+@media only screen and (max-width: 1200px) {
+    .main-nav li {
+    display: inline;
+    margin: 0 -15px;
+    }
+    .form-group {
+    margin: 10px;
+    width: 100%;
+    margin-left: auto;
+    }
+    .table{
+        width:100%;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    body{
+        font-size: 12px;
+    }
+    table{
+        width:100%;
+    }
+    .form-group{
+        width:100%;
+    }
+    .row>* {
+        flex-shrink: 0;
+        width: 100%;
+        max-width: 100%;
+        text-align: center;
+        padding-bottom: 1em;
+        padding-right: calc(var(--bs-gutter-x) * .5);
+        padding-left: calc(var(--bs-gutter-x) * .5);
+        margin-top: var(--bs-gutter-y);
+    }
+    .main-nav li a {
+    display: inline-block;
+    color: #222222;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+    text-decoration: none;
+    line-height: 20px;
+    margin: 17px 21px;
+    transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .main-nav{
+        display:none
+    }
+    .menu-btn{
+    display: block;
+    margin: 1em;
+    }
+
+    .menu {
+        display:block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        padding: 15px;
+        background: color: #7dc577;;
+        transform: translateX(-100%);
+        transition: transform 0.5s;
+        margin-top: 50px;
+        font-size: 25px;
+        text-align: center;
+        z-index: 3;
+        background: #7dc577;
+    }
+    .menu.active {
+        transform: translateX(0);
+    }
+    .main-nav-outer.active{
+        z-index: 0;
+    }
+    .menu a{
+        color: #fff;
+    }
+    .menu li {
+        list-style-type: none;
+    }
+    .menu-btn.active span:nth-of-type(1) {
+      display: none;
+    }
+    .menu-btn.active span:nth-of-type(2) {
+      top: 50%;
+      transform: translate(-50%, 0%) rotate(45deg);
+    }
+    .menu-btn.active span:nth-of-type(3) {
+      top: 50%;
+      transform: translate(-50%, 0%) rotate(-45deg);
+    }
+    .shopping-basket{
+        text-align: end;
+        transform: translate(-17px, -43px);
+        font-size: 25px;
+        top: 0;
+        bottom: 0;
+        height: 10px;
+        list-style-type: none;
+        display:block;
+    }
+    .shopping-basket a{
+        color: black;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .Portfolio-box{
+        width: 335px;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    .Portfolio-box{
+        width: 300px;
+    }
+    .shopping-basket{
+        transform: translate(-44px, -42px);
+    }
+}
